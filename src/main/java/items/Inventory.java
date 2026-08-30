@@ -80,6 +80,9 @@ public class Inventory
     public boolean isFull()
     {
         // Replace the next line
+        if(this.slots.currentSize == this.capacity){
+            return true;
+        }
         return false;
     }
 
@@ -101,6 +104,28 @@ public class Inventory
     public void addItemStackNoCheck(ItemStack toAdd)
     {
         LinkedList.Node<ItemStack> newNode = new LinkedList.Node<>(toAdd);
+
+        // if the newNode is the first
+        if(this.slots.head == null){
+            this.slots.head = newNode;
+            this.slots.tail = newNode;
+            this.slots.currentSize = 1;
+
+            newNode = null;
+            
+        }
+
+        //Link the newNode to the end of an existing list
+        //the tail slot moves to the next node
+        this.slots.tail.next = newNode;
+
+        //tail becomes the latest node
+        this.slots.tail = this.slots.tail.next;
+
+        //size increases
+        ++this.slots.currentSize;
+
+
 
         // Use the appendNode/add logic from Review 1 as your starting point
         // Once we reach this function... we know that `toAdd` must be stored
