@@ -80,10 +80,8 @@ public class Inventory
     public boolean isFull()
     {
         // Replace the next line
-        if(this.slots.currentSize == this.capacity){
-            return true;
-        }
-        return false;
+        return this.slots.currentSize == this.capacity;
+        
     }
 
     /**
@@ -109,9 +107,7 @@ public class Inventory
         if(this.slots.head == null){
             this.slots.head = newNode;
             this.slots.tail = newNode;
-            this.slots.currentSize = 1;
-
-            newNode = null;
+            
             
         }
 
